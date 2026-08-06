@@ -24,14 +24,13 @@ For PNG export into `Prints/`, use `server.py` (not plain `http.server`), then *
 
 ## Deploy (Vercel + GitHub)
 
-Repo: `varnabha/music-card`
+- **GitHub:** https://github.com/varnabha/music-card  
+- **Live:** https://chaand-baaliyan-card.vercel.app  
 
-1. Push this project to GitHub  
-2. Import the repo in [Vercel](https://vercel.com/new) (Framework Preset: **Other**)  
-3. Deploy — static site, no build command  
+Player examples:
 
-Live player examples:
-
-- `/` or `/index.html`
-- `/index.html?song=saudebaazi`
+- https://chaand-baaliyan-card.vercel.app/
+- https://chaand-baaliyan-card.vercel.app/?song=saudebaazi
 - Print cards: `/card.html`, `/saiyaan.html`, …
+
+Framework Preset: **Other** (static). No build command.
