@@ -59,6 +59,7 @@
   const dedicationLabel = document.getElementById("dedicationLabel");
   const liveCard = document.getElementById("liveCard");
   const artSlot = document.getElementById("artSlot");
+  const repeatBtn = document.getElementById("repeatBtn");
 
   if (!audio || !playBtn || !progress || !progressFill || !liveCard || !artSlot) return;
 
@@ -66,6 +67,19 @@
   let currentIndex = 0;
   let arts = {};
   let loadGen = 0;
+  let loopSong = true;
+
+  function setLoop(enabled) {
+    loopSong = enabled;
+    audio.loop = enabled;
+    if (repeatBtn) {
+      repeatBtn.setAttribute("aria-pressed", String(enabled));
+      repeatBtn.setAttribute("aria-label", enabled ? "Repeat song on" : "Repeat song off");
+    }
+  }
+
+  setLoop(true);
+  repeatBtn?.addEventListener("click", () => setLoop(!loopSong));
 
   function audioUrl(src) {
     try {
@@ -156,6 +170,7 @@
     audio.load();
     audio.src = audioUrl(track.src);
     audio.load();
+    audio.loop = loopSong;
 
     const url = new URL(window.location.href);
     url.searchParams.set("song", track.slug);
@@ -227,6 +242,12 @@
     updateProgress();
   });
   audio.addEventListener("ended", () => {
+    if (loopSong) {
+      // audio.loop should handle this; keep as safety
+      audio.currentTime = 0;
+      audio.play().catch(() => setPlaying(false));
+      return;
+    }
     setPlaying(false);
     loadTrack(currentIndex + 1, { autoplay: true });
   });
