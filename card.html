@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Print · Chaand Baaliyan Cards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+
+:root {
+  --night: #070b14;
+  --ink: #f4efe4;
+  --mute: #a8b0bf;
+  --moon: #f2e6c4;
+  --gold: #d4af6a;
+  --gold-soft: #e8d5a3;
+  --line: rgba(232, 213, 163, 0.28);
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-ui: "Outfit", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  font-family: var(--font-ui);
+  color: var(--ink);
+  background: var(--night);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+strong { font-weight: 500; }
+
+.card-page {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at top, #152038, transparent 50%), var(--night);
+  padding: 1.5rem 1rem 3rem;
+}
+
+.print-toolbar {
+  width: min(880px, 100%);
+  margin: 0 auto 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.url-field {
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.url-field input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--ink);
+  padding: 0.75rem 0.9rem;
+  font: inherit;
+  font-size: 0.9rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.toolbar-btn {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  padding: 0.75rem 1.1rem;
+  font: inherit;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.toolbar-btn:hover {
+  border-color: rgba(232, 213, 163, 0.55);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.toolbar-btn.primary {
+  background: linear-gradient(145deg, #f4ead0, #d4af6a);
+  border-color: transparent;
+  color: var(--night);
+  font-weight: 600;
+}
+
+.toolbar-btn.ghost { display: inline-flex; align-items: center; }
+
+.print-hint {
+  width: min(880px, 100%);
+  margin: 0 auto 1.5rem;
+  color: var(--mute);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.print-hint strong { color: var(--gold-soft); }
+
+.sheet { width: min(880px, 100%); margin: 0 auto; }
+
+.sheet-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* ===== FRONT: white Spotify player card ===== */
+.sp-card {
+  background: #fff;
+  color: #111;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 105 / 148;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.sp-art {
+  position: relative;
+  width: calc(100% - 1.6rem);
+  margin: 0.8rem auto 0;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0c1220;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.sp-art-sky {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(242, 230, 196, 0.22), transparent 50%),
+    linear-gradient(180deg, #151e32, #090e18);
+}
+
+.sp-art-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 14% 20%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 72% 18%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 40% 70%, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(1px 1px at 88% 55%, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1px 1px at 22% 80%, rgba(255, 255, 255, 0.45), transparent);
+}
+
+.sp-art-glow {
+  position: absolute;
+  width: 55%;
+  height: 55%;
+  top: 18%;
+  left: 22%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242, 230, 196, 0.28), transparent 70%);
+  filter: blur(8px);
+}
+
+.sp-moon {
+  position: relative;
+  z-index: 1;
+  width: 58%;
+  height: auto;
+  filter: drop-shadow(0 0 18px rgba(242, 230, 196, 0.35));
+}
+
+.sp-earring {
+  position: absolute;
+  z-index: 1;
+  width: 13%;
+  top: 56%;
+}
+
+.sp-earring-r { right: 25%; transform: rotate(-1deg); }
+
+.sp-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.85rem 1rem 0.7rem;
+}
+
+.sp-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.sp-titles h1 {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 4.2vw, 1.35rem);
+  letter-spacing: -0.02em;
+  color: #111;
+  line-height: 1.15;
+}
+
+.sp-artist {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: #666;
+}
+
+.sp-dedication {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.sp-heart {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  fill: #111;
+  overflow: visible;
+}
+
+.sp-progress { margin-top: 1.1rem; }
+
+.sp-progress-track {
+  position: relative;
+  display: block;
+  height: 3px;
+  border-radius: 999px;
+  background: #ddd;
+}
+
+.sp-progress-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 20%;
+  border-radius: inherit;
+  background: #111;
+}
+
+.sp-progress-knob {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #111;
+  transform: translate(-50%, -50%);
+}
+
+.sp-times {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.35rem;
+  font-size: 0.68rem;
+  color: #777;
+}
+
+.sp-controls {
+  margin-top: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #111;
+}
+
+.sp-controls > svg { width: 20px; height: 20px; }
+
+.sp-play {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid #111;
+  display: grid;
+  place-items: center;
+}
+
+.sp-play svg {
+  width: 18px;
+  height: 18px;
+  margin-left: 2px;
+}
+
+.sp-sign {
+  margin: auto 0 0;
+  padding-top: 0.65rem;
+  text-align: center;
+  font-size: 0.48rem;
+  letter-spacing: 0.32em;
+  text-transform: lowercase;
+  color: #b0b0b0;
+}
+
+/* ===== BACK: QR card — flex stack, no overlap ===== */
+.qr-card {
+  position: relative;
+  aspect-ratio: 105 / 148;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(232, 213, 163, 0.22);
+  background: #0c1220;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  color: var(--ink);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.qr-sky {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(242, 230, 196, 0.14), transparent 48%),
+    linear-gradient(180deg, #121a2c, #090e18 70%);
+}
+
+.qr-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 28% 42%, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1.5px 1.5px at 70% 22%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 82% 58%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 48% 70%, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(1px 1px at 18% 78%, rgba(255, 255, 255, 0.4), transparent);
+  opacity: 0.85;
+}
+
+.qr-glow {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 36%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(242, 230, 196, 0.18), transparent 70%);
+  filter: blur(10px);
+}
+
+.qr-stack {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.qr-frame {
+  flex: 0 0 auto;
+  padding: 0.75rem;
+  border-radius: 16px;
+  background: #f7f1e4;
+  box-shadow: 0 0 0 1px rgba(212, 175, 106, 0.35);
+}
+
+.qr-box {
+  width: 148px;
+  height: 148px;
+  display: grid;
+  place-items: center;
+}
+
+.qr-box img,
+.qr-box canvas {
+  display: block !important;
+  width: 148px !important;
+  height: 148px !important;
+}
+
+.qr-dedication {
+  flex: 0 0 auto;
+  margin: 1.55rem 0 0;
+  padding: 0 0.35rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.55rem;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  color: #f2e6c4;
+  text-shadow: 0 0 28px rgba(242, 230, 196, 0.4);
+}
+
+.qr-sign {
+  flex: 0 0 auto;
+  margin: 0.7rem 0 0;
+  font-size: 0.6rem;
+  letter-spacing: 0.42em;
+  text-transform: lowercase;
+  color: rgba(232, 213, 163, 0.8);
+}
+
+@media (max-width: 760px) {
+  .sheet-pair {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body.card-page { background: white; padding: 0; }
+  .sheet-pair {
+    width: 100%;
+    max-width: none;
+    display: block;
+  }
+  .sp-card,
+  .qr-card {
+    width: 105mm;
+    height: 148mm;
+    aspect-ratio: auto;
+    margin: 0 auto;
+    border-radius: 0;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+  }
+  .qr-card { page-break-after: auto; }
+}
+
+    </style>
+  </head>
+  <body class="card-page">
+    <div class="print-toolbar no-print">
+      <button type="button" id="printBtn" class="toolbar-btn primary">Print both cards</button>
+      <button type="button" id="savePngBtn" class="toolbar-btn">Save PNGs</button>
+      <a class="toolbar-btn ghost" href="cards.html">All cards</a>
+      <a class="toolbar-btn ghost" href="index.html">← Player</a>
+    </div>
+
+    <p class="print-hint no-print">
+      Single-file print cards — edit this <code>card.html</code> directly.
+      <strong>Spotify player</strong> (front) + <strong>QR card</strong> (back).
+    </p>
+
+    <div class="sheet sheet-pair">
+      <!-- FRONT: Spotify-format music player -->
+      <article class="sp-card" aria-label="Music player card">
+        <div class="sp-art" aria-hidden="true">
+          <div class="sp-art-sky">
+            <div class="sp-art-stars"></div>
+            <div class="sp-art-glow"></div>
+          </div>
+          <svg class="sp-moon" viewBox="0 0 200 200">
+            <defs>
+              <radialGradient id="spMoonFill" cx="38%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#fff8ea" />
+                <stop offset="45%" stop-color="#f0e2c4" />
+                <stop offset="100%" stop-color="#c9b48a" />
+              </radialGradient>
+            </defs>
+            <circle cx="100" cy="100" r="62" fill="url(#spMoonFill)" />
+            <circle cx="128" cy="88" r="54" fill="#0c1220" />
+          </svg>
+          <svg class="sp-earring sp-earring-r" viewBox="0 0 60 120">
+            <path
+              d="M30 8 C30 8 18 22 18 38 C18 52 30 60 30 60 C30 60 42 52 42 38 C42 22 30 8 30 8 Z"
+              fill="none"
+              stroke="#e8d5a3"
+              stroke-width="1.6"
+            />
+            <circle cx="30" cy="8" r="3.2" fill="#f2e6c4" />
+            <circle cx="30" cy="70" r="6.5" fill="none" stroke="#d4af6a" stroke-width="1.4" />
+            <path
+              d="M30 77 Q23 90 30 102 Q37 90 30 77"
+              fill="none"
+              stroke="#e8d5a3"
+              stroke-width="1.2"
+            />
+            <circle cx="30" cy="106" r="2.8" fill="#d4af6a" />
+          </svg>
+        </div>
+
+        <div class="sp-body">
+          <div class="sp-title-row">
+            <div class="sp-titles">
+              <h1>Chaand Baaliyan</h1>
+              <p class="sp-artist">Aditya A</p>
+              <p class="sp-dedication">For a pretty Moon</p>
+            </div>
+            <svg class="sp-heart" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              />
+            </svg>
+          </div>
+
+          <div class="sp-progress" aria-hidden="true">
+            <span class="sp-progress-track">
+              <span class="sp-progress-fill"></span>
+              <span class="sp-progress-knob"></span>
+            </span>
+            <div class="sp-times">
+              <span>0:42</span>
+              <span>3:18</span>
+            </div>
+          </div>
+
+          <div class="sp-controls" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M10.59 9.17 5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"
+              />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 6h2v12H6V6zm3.5 6 8.5 6V6l-8.5 6z" />
+            </svg>
+            <span class="sp-play">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7L8 5z" />
+              </svg>
+            </span>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"
+              />
+            </svg>
+          </div>
+
+          <p class="sp-sign">chirkut</p>
+        </div>
+      </article>
+
+      <!-- BACK: QR card -->
+      <article class="qr-card" aria-label="QR card">
+        <div class="qr-sky" aria-hidden="true">
+          <div class="qr-stars"></div>
+          <div class="qr-glow"></div>
+        </div>
+        <div class="qr-stack">
+          <div class="qr-frame">
+            <div id="qrBox" class="qr-box" aria-label="QR code"></div>
+          </div>
+          <p class="qr-dedication">For a pretty Moon</p>
+          <p class="qr-sign">chirkut</p>
+        </div>
+      </article>
+    </div>
+
+    <script>
+(() => {
+  const printBtn = document.getElementById("printBtn");
+  printBtn?.addEventListener("click", () => window.print());
+})();
+    </script>
+  
+    <script src="js/save-prints.js"></script>
+    <script>
+(() => {
+  const btn = document.getElementById("savePngBtn");
+  btn?.addEventListener("click", async () => {
+    try {
+      await window.PrintsExport.exportCurrentPage("chaand-baaliyan");
+      alert("Saved (or downloaded) chaand-baaliyan-front.png and chaand-baaliyan-back.png");
+    } catch (e) {
+      alert(e?.message || String(e));
+    }
+  });
+})();
+    </script>
+
+  </body>
+</html>
