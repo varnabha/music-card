@@ -1,0 +1,322 @@
+/* Per-song art themes for live Spotify player */
+
+/* --- chaand-baaliyan --- */
+.live-card.theme-chaand-baaliyan .sp-art {
+position: relative;
+  width: calc(100% - 1.6rem);
+  margin: 0.8rem auto 0;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0c1220;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.live-card.theme-chaand-baaliyan .sp-art-sky {
+position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(242, 230, 196, 0.22), transparent 50%),
+    linear-gradient(180deg, #151e32, #090e18);
+}
+.live-card.theme-chaand-baaliyan .sp-art-stars {
+position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 14% 20%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 72% 18%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 40% 70%, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(1px 1px at 88% 55%, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1px 1px at 22% 80%, rgba(255, 255, 255, 0.45), transparent);
+}
+.live-card.theme-chaand-baaliyan .sp-art-glow {
+position: absolute;
+  width: 55%;
+  height: 55%;
+  top: 18%;
+  left: 22%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242, 230, 196, 0.28), transparent 70%);
+  filter: blur(8px);
+}
+.live-card.theme-chaand-baaliyan .sp-moon {
+position: relative;
+  z-index: 1;
+  width: 58%;
+  height: auto;
+  filter: drop-shadow(0 0 18px rgba(242, 230, 196, 0.35));
+}
+.live-card.theme-chaand-baaliyan .sp-earring {
+position: absolute;
+  z-index: 1;
+  width: 13%;
+  top: 56%;
+}
+.live-card.theme-chaand-baaliyan .sp-earring-r {
+right: 25%; transform: rotate(-1deg);
+}
+
+/* --- saiyaan --- */
+.live-card.theme-saiyaan .sp-art {
+position: relative;
+  width: calc(100% - 1.6rem);
+  margin: 0.8rem auto 0;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #061618;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.live-card.theme-saiyaan .sp-art-sky {
+position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 72%, rgba(255, 154, 60, 0.28), transparent 42%),
+    radial-gradient(ellipse at 30% 18%, rgba(18, 90, 98, 0.55), transparent 50%),
+    linear-gradient(180deg, #0d3038 0%, #071a1e 55%, #040f11 100%);
+}
+.live-card.theme-saiyaan .sp-art-haze {
+position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1.2px 1.2px at 16% 22%, rgba(243, 217, 168, 0.55), transparent),
+    radial-gradient(1px 1px at 68% 14%, rgba(255, 255, 255, 0.45), transparent),
+    radial-gradient(1.4px 1.4px at 82% 38%, rgba(232, 184, 109, 0.5), transparent),
+    radial-gradient(1px 1px at 28% 48%, rgba(255, 255, 255, 0.35), transparent),
+    radial-gradient(1px 1px at 54% 28%, rgba(243, 217, 168, 0.4), transparent);
+  opacity: 0.9;
+}
+.live-card.theme-saiyaan .sp-art-glow {
+position: absolute;
+  width: 70%;
+  height: 55%;
+  bottom: 8%;
+  left: 15%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 154, 60, 0.35), transparent 70%);
+  filter: blur(14px);
+}
+.live-card.theme-saiyaan .sp-cover {
+position: relative;
+  z-index: 1;
+  width: 78%;
+  height: auto;
+  filter: drop-shadow(0 8px 24px rgba(255, 154, 60, 0.25));
+}
+.live-card.theme-saiyaan .sp-sign-heart {
+display: inline-block;
+  width: 12px;
+  height: 12px;
+  fill: #c45c6a;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* --- i-think-they-call-this-love --- */
+.live-card.theme-i-think-they-call-this-love .sp-art {
+position: relative;
+  width: calc(100% - 1.6rem);
+  margin: 0.8rem auto 0;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #081018;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.live-card.theme-i-think-they-call-this-love .sp-art-sky {
+position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 72% 28%, rgba(240, 194, 122, 0.22), transparent 38%),
+    radial-gradient(ellipse at 20% 80%, rgba(26, 70, 88, 0.55), transparent 50%),
+    linear-gradient(180deg, #152636 0%, #0c1822 55%, #081018 100%);
+}
+.live-card.theme-i-think-they-call-this-love .sp-art-rain {
+position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(105deg, transparent 0%, rgba(238, 243, 246, 0.04) 48%, transparent 52%),
+    linear-gradient(98deg, transparent 0%, rgba(238, 243, 246, 0.03) 46%, transparent 50%),
+    linear-gradient(112deg, transparent 0%, rgba(238, 243, 246, 0.035) 50%, transparent 54%);
+  background-size: 28px 100%, 42px 100%, 36px 100%;
+  background-position: 10% 0, 40% 0, 70% 0;
+  opacity: 0.7;
+}
+.live-card.theme-i-think-they-call-this-love .sp-art-stars {
+position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.2px 1.2px at 14% 18%, rgba(246, 217, 168, 0.55), transparent),
+    radial-gradient(1px 1px at 62% 12%, rgba(255, 255, 255, 0.45), transparent),
+    radial-gradient(1.4px 1.4px at 86% 36%, rgba(240, 194, 122, 0.5), transparent),
+    radial-gradient(1px 1px at 30% 44%, rgba(255, 255, 255, 0.35), transparent),
+    radial-gradient(1px 1px at 48% 24%, rgba(155, 179, 166, 0.45), transparent);
+  opacity: 0.9;
+}
+.live-card.theme-i-think-they-call-this-love .sp-art-glow {
+position: absolute;
+  width: 48%;
+  height: 48%;
+  top: 18%;
+  right: 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240, 194, 122, 0.38), transparent 70%);
+  filter: blur(16px);
+}
+.live-card.theme-i-think-they-call-this-love .sp-cover {
+position: relative;
+  z-index: 1;
+  width: 82%;
+  height: auto;
+  filter: drop-shadow(0 10px 28px rgba(240, 194, 122, 0.22));
+}
+
+/* --- cant-help-falling-in-love --- */
+.live-card.theme-cant-help-falling-in-love .sp-art {
+position: relative;
+  width: calc(100% - 1.6rem);
+  margin: 0.8rem auto 0;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #081018;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.live-card.theme-cant-help-falling-in-love .sp-art-sky {
+position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 72% 28%, rgba(240, 194, 122, 0.22), transparent 38%),
+    radial-gradient(ellipse at 20% 80%, rgba(26, 70, 88, 0.55), transparent 50%),
+    linear-gradient(180deg, #152636 0%, #0c1822 55%, #081018 100%);
+}
+.live-card.theme-cant-help-falling-in-love .sp-art-rain {
+position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(105deg, transparent 0%, rgba(238, 243, 246, 0.04) 48%, transparent 52%),
+    linear-gradient(98deg, transparent 0%, rgba(238, 243, 246, 0.03) 46%, transparent 50%),
+    linear-gradient(112deg, transparent 0%, rgba(238, 243, 246, 0.035) 50%, transparent 54%);
+  background-size: 28px 100%, 42px 100%, 36px 100%;
+  background-position: 10% 0, 40% 0, 70% 0;
+  opacity: 0.7;
+}
+.live-card.theme-cant-help-falling-in-love .sp-art-stars {
+position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.2px 1.2px at 14% 18%, rgba(246, 217, 168, 0.55), transparent),
+    radial-gradient(1px 1px at 62% 12%, rgba(255, 255, 255, 0.45), transparent),
+    radial-gradient(1.4px 1.4px at 86% 36%, rgba(240, 194, 122, 0.5), transparent),
+    radial-gradient(1px 1px at 30% 44%, rgba(255, 255, 255, 0.35), transparent),
+    radial-gradient(1px 1px at 48% 24%, rgba(155, 179, 166, 0.45), transparent);
+  opacity: 0.9;
+}
+.live-card.theme-cant-help-falling-in-love .sp-art-glow {
+position: absolute;
+  width: 48%;
+  height: 48%;
+  top: 18%;
+  right: 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240, 194, 122, 0.38), transparent 70%);
+  filter: blur(16px);
+}
+.live-card.theme-cant-help-falling-in-love .sp-cover {
+position: relative;
+  z-index: 1;
+  width: 82%;
+  height: auto;
+  filter: drop-shadow(0 10px 28px rgba(240, 194, 122, 0.22));
+}
+
+/* --- saudebaazi --- */
+.live-card.theme-saudebaazi .sp-art {
+position: relative;
+  width: calc(100% - 1.6rem);
+  margin: 0.8rem auto 0;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.live-card.theme-saudebaazi .sp-art-sky,
+.live-card.theme-saudebaazi .sp-art-rain,
+.live-card.theme-saudebaazi .sp-art-stars,
+.live-card.theme-saudebaazi .sp-art-glow {
+display: none;
+}
+.live-card.theme-saudebaazi .sp-cover {
+position: relative;
+  z-index: 1;
+  width: 92%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* --- kabhi-jo-badal-barse --- */
+.live-card.theme-kabhi-jo-badal-barse .sp-art {
+position: relative;
+  width: calc(100% - 1.6rem);
+  margin: 0.8rem auto 0;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0a0616;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.live-card.theme-kabhi-jo-badal-barse .sp-art-sky {
+position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% 0%, rgba(120, 70, 180, 0.45), transparent 55%),
+    radial-gradient(circle at 70% 30%, rgba(180, 130, 220, 0.2), transparent 40%),
+    linear-gradient(180deg, #2a1458 0%, #160a32 45%, #0a0616 100%);
+}
+.live-card.theme-kabhi-jo-badal-barse .sp-art-rain {
+position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(172deg, transparent 40%, rgba(230, 210, 255, 0.08) 49%, transparent 56%),
+    linear-gradient(168deg, transparent 42%, rgba(200, 170, 240, 0.06) 50%, transparent 57%);
+  background-size: 18px 100%, 26px 100%;
+  opacity: 0.7;
+}
+.live-card.theme-kabhi-jo-badal-barse .sp-art-stars {
+position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 22% 18%, rgba(240, 220, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 78% 14%, rgba(255, 245, 255, 0.4), transparent);
+  opacity: 0.7;
+}
+.live-card.theme-kabhi-jo-badal-barse .sp-art-glow {
+position: absolute;
+  width: 70%;
+  height: 40%;
+  top: 5%;
+  left: 15%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(140, 90, 200, 0.3), transparent 70%);
+  filter: blur(18px);
+}
+.live-card.theme-kabhi-jo-badal-barse .sp-cover {
+position: relative;
+  z-index: 1;
+  width: 92%;
+  height: auto;
+  filter: drop-shadow(0 10px 28px rgba(60, 30, 100, 0.4));
+}

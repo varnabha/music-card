@@ -1,0 +1,62 @@
+<svg class="sp-cover" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="lampWarm" cx="70%" cy="28%" r="45%">
+                <stop offset="0%" stop-color="#fff4d6" stop-opacity="0.95"/>
+                <stop offset="45%" stop-color="#f0c27a" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#f0c27a" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="bodyWood" x1="0.2" y1="0" x2="0.85" y2="1">
+                <stop offset="0%" stop-color="#6b5340"/>
+                <stop offset="55%" stop-color="#4a3a2c"/>
+                <stop offset="100%" stop-color="#3a2e24"/>
+              </linearGradient>
+              <linearGradient id="stringGlow" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fff0d0"/>
+                <stop offset="100%" stop-color="#f6d9a8" stop-opacity="0.55"/>
+              </linearGradient>
+              <linearGradient id="windowPane" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1e3548" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#0c1822" stop-opacity="0.2"/>
+              </linearGradient>
+            </defs>
+
+            <!-- soft window frame hint -->
+            <rect x="28" y="22" width="184" height="148" rx="4" fill="url(#windowPane)" stroke="#9bb3a6" stroke-opacity="0.25" stroke-width="1.2"/>
+            <line x1="120" y1="22" x2="120" y2="170" stroke="#9bb3a6" stroke-opacity="0.18" stroke-width="1"/>
+            <line x1="28" y1="96" x2="212" y2="96" stroke="#9bb3a6" stroke-opacity="0.15" stroke-width="1"/>
+
+            <!-- lamp glow through glass -->
+            <circle cx="168" cy="58" r="42" fill="url(#lampWarm)"/>
+
+            <!-- acoustic guitar (slightly tilted) -->
+            <g transform="translate(118 128) rotate(-18)">
+              <!-- body -->
+              <ellipse cx="0" cy="28" rx="38" ry="46" fill="url(#bodyWood)"/>
+              <ellipse cx="0" cy="18" rx="26" ry="18" fill="#2a2218" opacity="0.45"/>
+              <!-- sound hole -->
+              <circle cx="0" cy="18" r="11" fill="#1a1510"/>
+              <circle cx="0" cy="18" r="13" fill="none" stroke="#f6d9a8" stroke-opacity="0.55" stroke-width="1.2"/>
+              <!-- bridge -->
+              <rect x="-12" y="42" width="24" height="4" rx="1" fill="#8a7058"/>
+              <!-- neck -->
+              <rect x="-5" y="-78" width="10" height="88" rx="2" fill="#5a4636"/>
+              <!-- headstock -->
+              <path d="M-8 -78 L8 -78 L10 -98 L-10 -98 Z" fill="#4a3a2c"/>
+              <circle cx="-4" cy="-90" r="1.6" fill="#fff0d0" opacity="0.85"/>
+              <circle cx="4" cy="-90" r="1.6" fill="#fff0d0" opacity="0.85"/>
+              <circle cx="-4" cy="-84" r="1.6" fill="#f6d9a8" opacity="0.75"/>
+              <circle cx="4" cy="-84" r="1.6" fill="#f6d9a8" opacity="0.75"/>
+              <!-- glowing strings -->
+              <g stroke="url(#stringGlow)" stroke-width="1" opacity="0.95">
+                <line x1="-3" y1="-76" x2="-3" y2="44"/>
+                <line x1="-1" y1="-76" x2="-1" y2="44"/>
+                <line x1="1" y1="-76" x2="1" y2="44"/>
+                <line x1="3" y1="-76" x2="3" y2="44"/>
+              </g>
+            </g>
+
+            <!-- soft sill / notes hint -->
+            <path d="M36 188 Q120 168 204 188" fill="none" stroke="#9bb3a6" stroke-opacity="0.28" stroke-width="1.2"/>
+            <ellipse cx="58" cy="198" rx="7" ry="3.5" fill="#f0c27a" opacity="0.25" transform="rotate(-18 58 198)"/>
+            <ellipse cx="178" cy="202" rx="6" ry="3" fill="#9bb3a6" opacity="0.3" transform="rotate(14 178 202)"/>
+          </svg>

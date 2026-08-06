@@ -3,136 +3,99 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>chirkut · Music cards</title>
+    <title>chirkut · Music card</title>
     <meta
       name="description"
-      content="Moonlit music cards by chirkut — play the song, print the card."
+      content="Play the song on the music card — chirkut."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/player-card-themes.css" />
   </head>
-  <body class="player-page">
-    <div class="sky" aria-hidden="true">
-      <canvas id="stars"></canvas>
-      <div class="glow glow-moon"></div>
-      <div class="glow glow-soft"></div>
-      <div class="mist"></div>
-    </div>
+  <body class="live-player-page">
+    <main class="live-stage">
+      <article class="sp-card live-card theme-chaand-baaliyan" id="liveCard" aria-label="Music player card">
+        <div id="artSlot"></div>
 
-    <main class="stage">
-      <p class="dedication">for my best friend</p>
-
-      <div class="moon-scene" aria-hidden="true">
-        <svg class="crescent" viewBox="0 0 200 200" role="img">
-          <defs>
-            <radialGradient id="moonFill" cx="38%" cy="35%" r="65%">
-              <stop offset="0%" stop-color="#fff8ea" />
-              <stop offset="45%" stop-color="#f0e2c4" />
-              <stop offset="100%" stop-color="#c9b48a" />
-            </radialGradient>
-            <filter id="moonSoft">
-              <feGaussianBlur stdDeviation="1.2" />
-            </filter>
-          </defs>
-          <circle cx="100" cy="100" r="62" fill="url(#moonFill)" opacity="0.95" />
-          <circle cx="128" cy="88" r="54" fill="#070b14" />
-        </svg>
-
-        <svg class="earring earring-left" viewBox="0 0 60 120" role="img">
-          <path
-            d="M30 8 C30 8 18 22 18 38 C18 52 30 60 30 60 C30 60 42 52 42 38 C42 22 30 8 30 8 Z"
-            fill="none"
-            stroke="#e8d5a3"
-            stroke-width="1.5"
-          />
-          <circle cx="30" cy="8" r="3.5" fill="#f2e6c4" />
-          <circle cx="30" cy="72" r="7" fill="none" stroke="#d4af6a" stroke-width="1.4" />
-          <circle cx="30" cy="72" r="2.5" fill="#f2e6c4" />
-          <path
-            d="M30 79 Q22 92 30 104 Q38 92 30 79"
-            fill="none"
-            stroke="#e8d5a3"
-            stroke-width="1.2"
-          />
-          <circle cx="30" cy="108" r="3" fill="#d4af6a" />
-        </svg>
-
-        <svg class="earring earring-right" viewBox="0 0 60 120" role="img">
-          <path
-            d="M30 8 C30 8 18 22 18 38 C18 52 30 60 30 60 C30 60 42 52 42 38 C42 22 30 8 30 8 Z"
-            fill="none"
-            stroke="#e8d5a3"
-            stroke-width="1.5"
-          />
-          <circle cx="30" cy="8" r="3.5" fill="#f2e6c4" />
-          <circle cx="30" cy="72" r="7" fill="none" stroke="#d4af6a" stroke-width="1.4" />
-          <circle cx="30" cy="72" r="2.5" fill="#f2e6c4" />
-          <path
-            d="M30 79 Q22 92 30 104 Q38 92 30 79"
-            fill="none"
-            stroke="#e8d5a3"
-            stroke-width="1.2"
-          />
-          <circle cx="30" cy="108" r="3" fill="#d4af6a" />
-        </svg>
-      </div>
-
-      <header class="title-block">
-        <h1 id="songTitle">Chaand Baaliyan</h1>
-        <p class="artist" id="artistLabel">Aditya A</p>
-        <p class="meaning">music cards · chirkut</p>
-      </header>
-
-      <div class="track-list" id="trackList" aria-label="Songs"></div>
-
-      <section class="player" aria-label="Music player">
-        <button
-          type="button"
-          class="play-btn"
-          id="playBtn"
-          aria-label="Play Chaand Baaliyan"
-        >
-          <span class="play-icon" aria-hidden="true"></span>
-        </button>
-
-        <div class="player-meta">
-          <div class="track-row">
-            <span id="trackLabel">Chaand Baaliyan</span>
-            <span id="timeLabel">0:00 / 0:00</span>
+        <div class="sp-body">
+          <div class="sp-title-row">
+            <div class="sp-titles">
+              <h1 id="songTitle">Chaand Baaliyan</h1>
+              <p class="sp-artist" id="artistLabel">Aditya A</p>
+              <p class="sp-dedication" id="dedicationLabel">For a pretty Moon</p>
+            </div>
+            <svg class="sp-heart" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              />
+            </svg>
           </div>
-          <div
-            class="progress"
-            id="progress"
-            role="slider"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            aria-valuenow="0"
-            aria-label="Song progress"
-            tabindex="0"
-          >
-            <div class="progress-fill" id="progressFill"></div>
+
+          <div class="sp-progress" id="progress" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Song progress" tabindex="0">
+            <span class="sp-progress-track">
+              <span class="sp-progress-fill" id="progressFill"></span>
+              <span class="sp-progress-knob" id="progressKnob"></span>
+            </span>
+            <div class="sp-times">
+              <span id="timeCurrent">0:00</span>
+              <span id="timeDuration">0:00</span>
+            </div>
           </div>
+
+          <div class="sp-controls">
+            <button type="button" class="sp-ctrl" id="shuffleBtn" aria-label="Shuffle" disabled>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M10.59 9.17 5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"
+                />
+              </svg>
+            </button>
+            <button type="button" class="sp-ctrl" id="prevBtn" aria-label="Previous song">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M6 6h2v12H6V6zm3.5 6 8.5 6V6l-8.5 6z" />
+              </svg>
+            </button>
+            <button type="button" class="sp-play" id="playBtn" aria-label="Play">
+              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5v14l11-7L8 5z" />
+              </svg>
+              <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden>
+                <path d="M6 5h4v14H6V5zm8 0h4v14h-4V5z" />
+              </svg>
+            </button>
+            <button type="button" class="sp-ctrl" id="nextBtn" aria-label="Next song">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+              </svg>
+            </button>
+            <button type="button" class="sp-ctrl" id="repeatBtn" aria-label="Repeat" disabled>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <p class="sp-sign">chirkut</p>
         </div>
-      </section>
+      </article>
 
-      <p class="note" id="audioNote" hidden>
-        Song file missing — check the <code>audio/</code> folder.
-      </p>
+      <p class="live-note" id="audioNote" hidden>Song file missing — check the <code>audio/</code> folder.</p>
 
       <audio id="audio" preload="metadata" src="audio/chaand-baaliyan.mp3"></audio>
 
-      <footer class="foot">
-        <a class="quiet-link" id="cardLink" href="card.html">Print the music card</a>
-        <a class="quiet-link" href="cards.html">All cards</a>
-      </footer>
+      <nav class="live-nav">
+        <a href="card.html" id="cardLink">Print card</a>
+        <a href="cards.html">All cards</a>
+      </nav>
     </main>
 
-    <script src="stars.js"></script>
     <script src="player.js"></script>
   </body>
 </html>

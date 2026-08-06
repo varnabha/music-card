@@ -1,0 +1,52 @@
+<svg class="sp-cover" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="flameCore" cx="50%" cy="70%" r="55%">
+                <stop offset="0%" stop-color="#fff6d8"/>
+                <stop offset="35%" stop-color="#ffb347"/>
+                <stop offset="75%" stop-color="#ff7a28"/>
+                <stop offset="100%" stop-color="#c44a12"/>
+              </radialGradient>
+              <radialGradient id="lampBody" cx="40%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#f3d9a8"/>
+                <stop offset="55%" stop-color="#c9954a"/>
+                <stop offset="100%" stop-color="#7a4e1e"/>
+              </radialGradient>
+              <linearGradient id="petalGold" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f3d9a8" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#e8b86d" stop-opacity="0.35"/>
+              </linearGradient>
+            </defs>
+
+            <!-- soft lotus / garland arcs -->
+            <path d="M48 168 Q120 128 192 168" fill="none" stroke="url(#petalGold)" stroke-width="1.4" opacity="0.7"/>
+            <path d="M58 178 Q120 146 182 178" fill="none" stroke="#e8b86d" stroke-width="1" opacity="0.35"/>
+
+            <!-- left moth -->
+            <g transform="translate(58 78) rotate(-18)" fill="#f3d9a8" opacity="0.75">
+              <ellipse cx="0" cy="0" rx="11" ry="6" transform="rotate(-28)"/>
+              <ellipse cx="14" cy="-2" rx="11" ry="6" transform="rotate(28)"/>
+              <ellipse cx="7" cy="2" rx="3" ry="5" fill="#e8b86d"/>
+            </g>
+            <!-- right moth -->
+            <g transform="translate(178 92) rotate(22)" fill="#f3d9a8" opacity="0.65">
+              <ellipse cx="0" cy="0" rx="9" ry="5" transform="rotate(-30)"/>
+              <ellipse cx="12" cy="-1" rx="9" ry="5" transform="rotate(28)"/>
+              <ellipse cx="6" cy="1.5" rx="2.5" ry="4" fill="#e8b86d"/>
+            </g>
+
+            <!-- flame -->
+            <ellipse cx="120" cy="118" rx="18" ry="36" fill="url(#flameCore)"/>
+            <ellipse cx="120" cy="126" rx="8" ry="16" fill="#fff8e8" opacity="0.85"/>
+
+            <!-- diya bowl -->
+            <path d="M78 148 C78 148 88 168 120 168 C152 168 162 148 162 148 C162 148 150 156 120 156 C90 156 78 148 78 148 Z" fill="url(#lampBody)"/>
+            <ellipse cx="120" cy="148" rx="42" ry="10" fill="#f3d9a8"/>
+            <ellipse cx="120" cy="146" rx="28" ry="5" fill="#7a4e1e" opacity="0.35"/>
+            <!-- wick -->
+            <rect x="117.5" y="132" width="5" height="14" rx="1.5" fill="#3a2814"/>
+
+            <!-- floating petals -->
+            <ellipse cx="86" cy="198" rx="10" ry="5" fill="#e8b86d" opacity="0.45" transform="rotate(-20 86 198)"/>
+            <ellipse cx="154" cy="202" rx="9" ry="4.5" fill="#f3d9a8" opacity="0.4" transform="rotate(18 154 202)"/>
+            <ellipse cx="120" cy="208" rx="8" ry="4" fill="#e8b86d" opacity="0.35"/>
+          </svg>
