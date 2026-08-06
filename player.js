@@ -73,6 +73,7 @@
     loopSong = enabled;
     audio.loop = enabled;
     if (repeatBtn) {
+      repeatBtn.classList.toggle("is-on", enabled);
       repeatBtn.setAttribute("aria-pressed", String(enabled));
       repeatBtn.setAttribute("aria-label", enabled ? "Repeat song on" : "Repeat song off");
     }

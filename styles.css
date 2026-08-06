@@ -1169,9 +1169,33 @@ code {
   pointer-events: none;
 }
 
+.live-card #repeatBtn {
+  color: #bbb;
+  opacity: 1;
+}
+
+.live-card #repeatBtn .repeat-one {
+  display: none;
+  position: absolute;
+  right: 2px;
+  bottom: 4px;
+  font-size: 0.55rem;
+  font-weight: 700;
+  line-height: 1;
+  font-family: var(--font-ui);
+  color: inherit;
+  pointer-events: none;
+}
+
+.live-card #repeatBtn.is-on,
 .live-card #repeatBtn[aria-pressed="true"] {
   color: #111;
   opacity: 1;
+}
+
+.live-card #repeatBtn.is-on .repeat-one,
+.live-card #repeatBtn[aria-pressed="true"] .repeat-one {
+  display: block;
 }
 
 .live-card .sp-play .icon-play {
