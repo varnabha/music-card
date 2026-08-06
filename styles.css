@@ -967,6 +967,62 @@ code {
   object-fit: contain;
 }
 
+/* Chaand Baaliyan: square art + exact card.html moon/earring geometry */
+.live-card.theme-chaand-baaliyan #artSlot {
+  place-items: center;
+  padding: 0.8rem 0.8rem 0;
+}
+
+.live-card.theme-chaand-baaliyan #artSlot .sp-art {
+  /* Force square like card.html — never stretch */
+  width: min(100%, 100cqh, calc(100% - 0px)) !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+  background: #0c1220;
+}
+
+@supports (width: 1cqmin) {
+  .live-card.theme-chaand-baaliyan #artSlot {
+    container-type: size;
+  }
+  .live-card.theme-chaand-baaliyan #artSlot .sp-art {
+    width: 100cqmin !important;
+    height: 100cqmin !important;
+  }
+}
+
+.live-card.theme-chaand-baaliyan #artSlot .sp-moon {
+  position: relative !important;
+  z-index: 1;
+  width: 58% !important;
+  max-width: none !important;
+  max-height: none !important;
+  height: auto !important;
+  filter: drop-shadow(0 0 18px rgba(242, 230, 196, 0.35));
+}
+
+.live-card.theme-chaand-baaliyan #artSlot .sp-earring {
+  position: absolute !important;
+  z-index: 2;
+  width: 13% !important;
+  top: 56% !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.live-card.theme-chaand-baaliyan #artSlot .sp-earring-r {
+  right: 25% !important;
+  left: auto !important;
+  transform: rotate(-1deg) !important;
+}
+
 .live-card .sp-body {
   flex: none;
   display: flex;

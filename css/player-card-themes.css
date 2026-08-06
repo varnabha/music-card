@@ -1,27 +1,23 @@
 /* Per-song art themes for live Spotify player */
 
-/* --- chaand-baaliyan --- */
+/* --- chaand-baaliyan --- (exact match to card.html art) */
 .live-card.theme-chaand-baaliyan .sp-art {
-position: relative;
-  width: calc(100% - 1.6rem);
-  margin: 0.8rem auto 0;
-  aspect-ratio: 1;
+  position: relative;
   border-radius: 10px;
   overflow: hidden;
   background: #0c1220;
   display: grid;
   place-items: center;
-  flex-shrink: 0;
 }
 .live-card.theme-chaand-baaliyan .sp-art-sky {
-position: absolute;
+  position: absolute;
   inset: 0;
   background:
     radial-gradient(circle at 50% 40%, rgba(242, 230, 196, 0.22), transparent 50%),
     linear-gradient(180deg, #151e32, #090e18);
 }
 .live-card.theme-chaand-baaliyan .sp-art-stars {
-position: absolute;
+  position: absolute;
   inset: 0;
   background-image:
     radial-gradient(1px 1px at 14% 20%, rgba(255, 255, 255, 0.8), transparent),
@@ -31,7 +27,7 @@ position: absolute;
     radial-gradient(1px 1px at 22% 80%, rgba(255, 255, 255, 0.45), transparent);
 }
 .live-card.theme-chaand-baaliyan .sp-art-glow {
-position: absolute;
+  position: absolute;
   width: 55%;
   height: 55%;
   top: 18%;
@@ -41,20 +37,21 @@ position: absolute;
   filter: blur(8px);
 }
 .live-card.theme-chaand-baaliyan .sp-moon {
-position: relative;
+  position: relative;
   z-index: 1;
   width: 58%;
   height: auto;
   filter: drop-shadow(0 0 18px rgba(242, 230, 196, 0.35));
 }
 .live-card.theme-chaand-baaliyan .sp-earring {
-position: absolute;
+  position: absolute;
   z-index: 1;
   width: 13%;
   top: 56%;
 }
 .live-card.theme-chaand-baaliyan .sp-earring-r {
-right: 25%; transform: rotate(-1deg);
+  right: 25%;
+  transform: rotate(-1deg);
 }
 
 /* --- saiyaan --- */
