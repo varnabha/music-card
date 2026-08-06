@@ -1144,15 +1144,21 @@ code {
   border: 0;
   background: transparent;
   color: inherit;
-  padding: 0.3rem;
+  padding: 0.45rem;
+  min-width: 36px;
+  min-height: 36px;
   display: grid;
   place-items: center;
   cursor: pointer;
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
 }
 
 .live-card .sp-ctrl:disabled {
   opacity: 0.28;
   cursor: default;
+  pointer-events: none;
 }
 
 .live-card .sp-ctrl svg,
@@ -1160,6 +1166,12 @@ code {
   width: 18px;
   height: 18px;
   display: block;
+  pointer-events: none;
+}
+
+.live-card #repeatBtn[aria-pressed="true"] {
+  color: #111;
+  opacity: 1;
 }
 
 .live-card .sp-play .icon-play {
