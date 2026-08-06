@@ -6,7 +6,6 @@
       artist: "Aditya A",
       dedication: "For a pretty Moon",
       src: "audio/chaand-baaliyan.mp3",
-      card: "card.html",
     },
     {
       slug: "saiyaan",
@@ -14,7 +13,6 @@
       artist: "Kailash Kher",
       dedication: "",
       src: "audio/saiyaan.mp3",
-      card: "saiyaan.html",
     },
     {
       slug: "i-think-they-call-this-love",
@@ -22,7 +20,6 @@
       artist: "Matthew Ifield",
       dedication: "You can say that I'm a fool",
       src: "audio/i-think-they-call-this-love.mp3",
-      card: "i-think-they-call-this-love.html",
     },
     {
       slug: "cant-help-falling-in-love",
@@ -30,7 +27,6 @@
       artist: "Elvis Presley",
       dedication: "Only fools rush in",
       src: "audio/cant-help-falling-in-love.mp3",
-      card: "cant-help-falling-in-love.html",
     },
     {
       slug: "saudebaazi",
@@ -38,7 +34,6 @@
       artist: "Javed Bashir",
       dedication: "",
       src: "audio/saudebaazi.mp3",
-      card: "saudebaazi.html",
     },
     {
       slug: "kabhi-jo-badal-barse",
@@ -46,7 +41,6 @@
       artist: "Arijit Singh",
       dedication: "",
       src: "audio/kabhi-jo-badal-barse.mp3",
-      card: "kabhi-jo-badal-barse.html",
     },
   ];
 
@@ -71,6 +65,15 @@
   let seeking = false;
   let currentIndex = 0;
   let arts = {};
+  let loadGen = 0;
+
+  function audioUrl(src) {
+    try {
+      return new URL(src, window.location.href).href;
+    } catch {
+      return src;
+    }
+  }
 
   function pickIndexFromUrl() {
     const params = new URLSearchParams(window.location.search);
@@ -84,6 +87,14 @@
     const m = Math.floor(seconds / 60);
     const s = Math.floor(seconds % 60);
     return `${m}:${String(s).padStart(2, "0")}`;
+  }
+
+  function hideAudioNote() {
+    if (audioNote) audioNote.hidden = true;
+  }
+
+  function showAudioNote() {
+    if (audioNote) audioNote.hidden = false;
   }
 
   function setPlaying(isPlaying) {
@@ -120,37 +131,67 @@
     liveCard.className = `sp-card live-card theme-${track.slug}`;
     const artHtml = arts[track.slug];
     if (artHtml) artSlot.innerHTML = artHtml;
-    if (audioNote) audioNote.hidden = true;
+    hideAudioNote();
+  }
+
+  function isIgnorablePlayError(err) {
+    if (!err) return false;
+    return err.name === "AbortError" || err.name === "NotAllowedError";
   }
 
   function loadTrack(index, { autoplay = false } = {}) {
     currentIndex = (index + TRACKS.length) % TRACKS.length;
     const track = TRACKS[currentIndex];
+    const gen = ++loadGen;
+
+    hideAudioNote();
     syncChrome(track);
-    audio.src = track.src;
-    audio.load();
-    const url = new URL(window.location.href);
-    url.searchParams.set("song", track.slug);
-    history.replaceState(null, "", url);
     setPlaying(false);
     progressFill.style.width = "0%";
     if (progressKnob) progressKnob.style.left = "0%";
     updateProgress();
-    if (autoplay) {
-      audio.play().catch(() => {
-        setPlaying(false);
-        if (audioNote) audioNote.hidden = false;
-      });
+
+    audio.pause();
+    audio.removeAttribute("src");
+    audio.load();
+    audio.src = audioUrl(track.src);
+    audio.load();
+
+    const url = new URL(window.location.href);
+    url.searchParams.set("song", track.slug);
+    history.replaceState(null, "", url);
+
+    const onReady = () => {
+      if (gen !== loadGen) return;
+      hideAudioNote();
+      updateProgress();
+      if (autoplay) {
+        audio.play().catch((err) => {
+          if (gen !== loadGen) return;
+          if (isIgnorablePlayError(err)) return;
+          setPlaying(false);
+          showAudioNote();
+        });
+      }
+    };
+
+    if (audio.readyState >= 2) {
+      onReady();
+    } else {
+      audio.addEventListener("canplay", onReady, { once: true });
     }
   }
 
   async function togglePlay() {
+    hideAudioNote();
     if (audio.paused) {
       try {
         await audio.play();
-      } catch {
+      } catch (err) {
+        if (isIgnorablePlayError(err)) return;
         setPlaying(false);
-        if (audioNote) audioNote.hidden = false;
+        // Only show missing if the media really failed
+        if (audio.error && audio.error.code !== 1) showAudioNote();
       }
     } else {
       audio.pause();
@@ -171,18 +212,29 @@
   prevBtn?.addEventListener("click", () => loadTrack(currentIndex - 1, { autoplay: true }));
   nextBtn?.addEventListener("click", () => loadTrack(currentIndex + 1, { autoplay: true }));
 
-  audio.addEventListener("play", syncPlayingFromAudio);
+  audio.addEventListener("play", () => {
+    hideAudioNote();
+    syncPlayingFromAudio();
+  });
   audio.addEventListener("pause", syncPlayingFromAudio);
-  audio.addEventListener("playing", syncPlayingFromAudio);
+  audio.addEventListener("playing", () => {
+    hideAudioNote();
+    syncPlayingFromAudio();
+  });
   audio.addEventListener("timeupdate", updateProgress);
-  audio.addEventListener("loadedmetadata", updateProgress);
+  audio.addEventListener("loadedmetadata", () => {
+    hideAudioNote();
+    updateProgress();
+  });
   audio.addEventListener("ended", () => {
     setPlaying(false);
     loadTrack(currentIndex + 1, { autoplay: true });
   });
   audio.addEventListener("error", () => {
+    // 1 = MEDIA_ERR_ABORTED (normal when switching tracks)
+    if (!audio.error || audio.error.code === 1) return;
     setPlaying(false);
-    if (audioNote) audioNote.hidden = false;
+    showAudioNote();
   });
 
   progress.addEventListener("pointerdown", (event) => {
