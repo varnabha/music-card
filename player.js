@@ -63,11 +63,8 @@
   const artistLabel = document.getElementById("artistLabel");
   const titleEl = document.getElementById("songTitle");
   const dedicationLabel = document.getElementById("dedicationLabel");
-  const cardLink = document.getElementById("cardLink");
   const liveCard = document.getElementById("liveCard");
   const artSlot = document.getElementById("artSlot");
-  const iconPlay = playBtn?.querySelector(".icon-play");
-  const iconPause = playBtn?.querySelector(".icon-pause");
 
   if (!audio || !playBtn || !progress || !progressFill || !liveCard || !artSlot) return;
 
@@ -91,9 +88,12 @@
 
   function setPlaying(isPlaying) {
     playBtn.classList.toggle("is-playing", isPlaying);
-    playBtn.setAttribute("aria-label", isPlaying ? `Pause ${TRACKS[currentIndex].title}` : `Play ${TRACKS[currentIndex].title}`);
-    if (iconPlay) iconPlay.hidden = isPlaying;
-    if (iconPause) iconPause.hidden = !isPlaying;
+    const title = TRACKS[currentIndex]?.title || "song";
+    playBtn.setAttribute("aria-label", isPlaying ? `Pause ${title}` : `Play ${title}`);
+  }
+
+  function syncPlayingFromAudio() {
+    setPlaying(!audio.paused && !audio.ended);
   }
 
   function updateProgress() {
@@ -116,13 +116,10 @@
       dedicationLabel.textContent = track.dedication || "";
       dedicationLabel.hidden = !track.dedication;
     }
-    if (cardLink) cardLink.href = track.card;
     document.title = `${track.title} · chirkut`;
     liveCard.className = `sp-card live-card theme-${track.slug}`;
     const artHtml = arts[track.slug];
-    if (artHtml) {
-      artSlot.innerHTML = artHtml;
-    }
+    if (artHtml) artSlot.innerHTML = artHtml;
     if (audioNote) audioNote.hidden = true;
   }
 
@@ -140,13 +137,10 @@
     if (progressKnob) progressKnob.style.left = "0%";
     updateProgress();
     if (autoplay) {
-      audio
-        .play()
-        .then(() => setPlaying(true))
-        .catch(() => {
-          setPlaying(false);
-          if (audioNote) audioNote.hidden = false;
-        });
+      audio.play().catch(() => {
+        setPlaying(false);
+        if (audioNote) audioNote.hidden = false;
+      });
     }
   }
 
@@ -154,14 +148,12 @@
     if (audio.paused) {
       try {
         await audio.play();
-        setPlaying(true);
       } catch {
         setPlaying(false);
         if (audioNote) audioNote.hidden = false;
       }
     } else {
       audio.pause();
-      setPlaying(false);
     }
   }
 
@@ -179,12 +171,17 @@
   prevBtn?.addEventListener("click", () => loadTrack(currentIndex - 1, { autoplay: true }));
   nextBtn?.addEventListener("click", () => loadTrack(currentIndex + 1, { autoplay: true }));
 
+  audio.addEventListener("play", syncPlayingFromAudio);
+  audio.addEventListener("pause", syncPlayingFromAudio);
+  audio.addEventListener("playing", syncPlayingFromAudio);
   audio.addEventListener("timeupdate", updateProgress);
   audio.addEventListener("loadedmetadata", updateProgress);
   audio.addEventListener("ended", () => {
+    setPlaying(false);
     loadTrack(currentIndex + 1, { autoplay: true });
   });
   audio.addEventListener("error", () => {
+    setPlaying(false);
     if (audioNote) audioNote.hidden = false;
   });
 
